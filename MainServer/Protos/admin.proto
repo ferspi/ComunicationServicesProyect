@@ -1,0 +1,51 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "MainServer";
+
+package admin;
+
+// The admin service definition.
+service Admin {
+
+  // Functions availables
+  rpc PostProduct(ProductoNuevoDTO) returns (MessageReply);
+  rpc DeleteProduct(ProductoBorrarDTO) returns (MessageReply);
+  rpc PutProduct(ProductoModificarDTO) returns (MessageReply);
+  rpc PostCompra(CompraDTO) returns (MessageReply);
+  rpc GetCalificaciones(CalificacionesDTO) returns (MessageReply);
+ 
+}
+
+message ProductoNuevoDTO {
+	string user = 1;
+	string nombre = 2;
+	string descripcion = 3;
+	float precio =  4;
+	int32 stock = 5;
+}
+
+message ProductoBorrarDTO {
+	string user = 1;
+	string producto = 2;
+}
+
+message ProductoModificarDTO {
+	string user = 1;
+	string nombre = 2;
+	string atributoAModificar = 6;
+	string nuevoValor = 7;
+}
+
+message CompraDTO {
+	string user = 1;
+	string producto = 2;
+}
+
+message CalificacionesDTO {
+	string producto = 1;
+}
+
+
+message MessageReply {
+	string message = 1;
+}
